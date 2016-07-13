@@ -14,7 +14,7 @@ public class DisplayWindow {
 		
 		try {
 			//File file = new File("C://Users//Victoria//Documents//brookhaven//home.php");
-			//jep.setPage(file.toURI().toURL());
+			//editor.setPage(file.toURI().toURL());
 			editor.setPage("http://www.google.com");
 		}catch (IOException e) {
 			editor.setContentType("text/html");
