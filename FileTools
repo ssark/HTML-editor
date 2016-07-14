@@ -1,0 +1,36 @@
+import java.io.File;
+
+/**
+ * 
+ * @author Victoria
+ *
+ * Tools/methods to use to manipulate files: Load, Create new file, Save
+ *
+ */
+
+public class FileTools {
+	private File file;
+	
+	/**
+	 * Choose file to load
+	 * 
+	 * @throws IllegalArgumentException if not .html or .htm
+	 */
+	public static void loadFile() {
+		// TODO
+	}
+	
+	/**
+	 * Create a new HTML file
+	 */
+	public static void newFile() {
+		// TODO
+	}
+	
+	/**
+	 * Saves and writes to file
+	 */
+	public static void saveFile() {
+		// TODO
+	}
+}
