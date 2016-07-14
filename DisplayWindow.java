@@ -1,5 +1,11 @@
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class DisplayWindow {
@@ -26,6 +32,33 @@ public class DisplayWindow {
 		JScrollPane scrollPane = new JScrollPane(HTMLPage);
 		scrollPane.setPreferredSize(new Dimension(800, 600));
 		JFrame frame = new JFrame("HTML Editor");
+		
+		// control panel or toolbar
+		final JPanel control_panel = new JPanel();
+        frame.add(control_panel, BorderLayout.NORTH);
+        
+        final JButton load = new JButton("Load");
+        load.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                FileTools.loadFile();
+            }
+        });
+        final JButton newFile = new JButton("New");
+        load.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                FileTools.newFile();
+            }
+        });
+        final JButton save = new JButton("Save");
+        load.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                FileTools.saveFile();
+            }
+        });
+        control_panel.add(load);
+        control_panel.add(newFile);
+        control_panel.add(save);
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(scrollPane);
 		frame.setPreferredSize(new Dimension(800,600));
