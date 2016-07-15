@@ -1,5 +1,7 @@
 import java.awt.Component;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -14,6 +16,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileTools {
 	private static File file;
+	private final static JFileChooser chooser = new JFileChooser();
+	private static boolean isNew = true;
 	
 	/**
 	 * Choose file to load
@@ -21,7 +25,6 @@ public class FileTools {
 	 * @throws IllegalArgumentException if not .html or .htm or .php
 	 */
 	public static void loadFile(Component comp) {
-		final JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("HTML files", "html", "htm", "php");
 	    chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(comp);
@@ -31,6 +34,8 @@ public class FileTools {
 		
 		if (! filter.accept(chooser.getSelectedFile())) {
 			throw new IllegalArgumentException();
+	    } else {
+	    	isNew = false;
 	    }
 	}
 	
@@ -38,14 +43,26 @@ public class FileTools {
 	 * Create a new HTML file
 	 */
 	public static void newFile() {
-		// TODO
+		isNew = true;
+		try {
+			// check if saved first
+			file = Files.createTempFile(null, ".html").toFile();
+		} catch (IOException e) {
+			file = null;
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	/**
 	 * Saves and writes to file
 	 */
-	public static void saveFile() {
-		// TODO
+	public static void saveFile(Component comp) {
+		if (isNew) {
+			chooser.showSaveDialog(comp);
+		} else {
+			// TODO
+			// file already has a location --> filewriter
+		}
 	}
 	
 	/**
