@@ -1,4 +1,8 @@
+import java.awt.Component;
 import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * 
@@ -9,15 +13,28 @@ import java.io.File;
  */
 
 public class FileTools {
-	private File file;
+	private static File file;
 	
 	/**
 	 * Choose file to load
 	 * 
-	 * @throws IllegalArgumentException if not .html or .htm
+	 * @throws IllegalArgumentException if not .html or .htm or .php
 	 */
-	public static void loadFile() {
-		// TODO
+	public static void loadFile(Component comp) {
+		final JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("HTML files", "html", "htm", "php");
+	    chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(comp);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+	       System.out.println("You chose to open this file: " +
+	            chooser.getSelectedFile().getName());
+	    }
+		
+		if (filter.accept(chooser.getSelectedFile())) {
+			file = chooser.getSelectedFile();
+		} else {
+	    	throw new IllegalArgumentException();
+	    }
 	}
 	
 	/**
@@ -32,5 +49,12 @@ public class FileTools {
 	 */
 	public static void saveFile() {
 		// TODO
+	}
+	
+	/**
+	 * Returns chosen file to display
+	 */
+	public static File getFile() {
+		return file;
 	}
 }
