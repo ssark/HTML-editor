@@ -51,13 +51,13 @@ public class DisplayWindow {
             }
         });
         final JButton newFile = new JButton("New");
-        load.addActionListener(new ActionListener() {
+        newFile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 FileTools.newFile();
             }
         });
         final JButton save = new JButton("Save");
-        load.addActionListener(new ActionListener() {
+        save.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 FileTools.saveFile();
             }
