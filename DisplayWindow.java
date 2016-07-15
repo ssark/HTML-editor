@@ -28,10 +28,15 @@ public class DisplayWindow {
 		 */
 		
 		PageDisplay HTMLPage = new PageDisplay(null); // to change with loaded file
+		Editor editor = new Editor();	// to change with src code
+		Reader reader = new Reader(null);
 		
-		JScrollPane scrollPane = new JScrollPane(HTMLPage);
-		scrollPane.setPreferredSize(new Dimension(800, 600));
+		JScrollPane scrollPagePane = new JScrollPane(HTMLPage);
+		scrollPagePane.setPreferredSize(new Dimension(800, 600));
 		JFrame frame = new JFrame("HTML Editor");
+		
+		JScrollPane scrollEditPane = new JScrollPane(editor);
+		scrollEditPane.setPreferredSize(new Dimension(600, 600));
 		
 		// control panel or toolbar
 		final JPanel control_panel = new JPanel();
@@ -43,6 +48,8 @@ public class DisplayWindow {
             	try {
             		FileTools.loadFile(frame);
             		HTMLPage.updateFile(FileTools.getFile());
+            		reader.updateCode(FileTools.getFile());
+            		editor.updateCode(reader.getCode());
             	} catch (IllegalArgumentException ex) {
             		if (FileTools.getFile() != null) {
             			HTMLPage.errorPage();
@@ -72,8 +79,9 @@ public class DisplayWindow {
         control_panel.add(save);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().add(scrollPane);
-		frame.setPreferredSize(new Dimension(800,600));
+		frame.add(scrollEditPane, BorderLayout.WEST);
+		frame.add(scrollPagePane, BorderLayout.EAST);
+		//frame.setPreferredSize(new Dimension(800,600));
 		frame.setLocation(300, 100);
 		frame.pack();
 		frame.setVisible(true);
