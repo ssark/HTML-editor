@@ -23,7 +23,6 @@ public class PageDisplay extends JEditorPane {
 	public PageDisplay(File file) {
 		updateFile(file);
 		setEditable(false);	// so that no weird things appear on the screen (set to true to see a funny html page)
-		display();
 	}
 	
 	/**
@@ -32,6 +31,7 @@ public class PageDisplay extends JEditorPane {
 	 */
 	public void updateFile(File file) {
 		this.file = file;
+		display();
 	}
 	
 	/**
@@ -46,9 +46,13 @@ public class PageDisplay extends JEditorPane {
 		}
 		try {
 			setPage(file.toURI().toURL());
-		}catch (IOException e) {
-			setContentType("text/html");
-			setText("<html><h1>Error!<h1><h2>Page could not load<h2></html>");
+		} catch (IOException e) {
+			errorPage();
 		}
+	}
+	
+	public void errorPage() {
+		setContentType("text/html");
+		setText("<html><h1>Error!<h1><h2>Page could not load<h2></html>");
 	}
 }
