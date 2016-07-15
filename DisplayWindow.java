@@ -69,6 +69,7 @@ public class DisplayWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(scrollPane);
 		frame.setPreferredSize(new Dimension(800,600));
+		frame.setLocation(300, 100);
 		frame.pack();
 		frame.setVisible(true);
 	}
