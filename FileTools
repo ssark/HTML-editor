@@ -26,14 +26,11 @@ public class FileTools {
 	    chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(comp);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
-	       System.out.println("You chose to open this file: " +
-	            chooser.getSelectedFile().getName());
+	       file = chooser.getSelectedFile();
 	    }
 		
-		if (filter.accept(chooser.getSelectedFile())) {
-			file = chooser.getSelectedFile();
-		} else {
-	    	throw new IllegalArgumentException();
+		if (! filter.accept(chooser.getSelectedFile())) {
+			throw new IllegalArgumentException();
 	    }
 	}
 	
