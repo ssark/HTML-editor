@@ -53,13 +53,18 @@ public class DisplayWindow {
         final JButton newFile = new JButton("New");
         newFile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                FileTools.newFile();
+            	try {
+            		FileTools.newFile();
+            		HTMLPage.updateFile(FileTools.getFile());
+            	} catch (IllegalArgumentException ex) {
+        			HTMLPage.errorPage();
+            	}
             }
         });
         final JButton save = new JButton("Save");
         save.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                FileTools.saveFile();
+                FileTools.saveFile(frame);
             }
         });
         control_panel.add(load);
