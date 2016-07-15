@@ -14,18 +14,18 @@ import java.io.IOException;
 
 public class Reader {
 	
-	private static BufferedReader r;
-	public static String line;
+	private BufferedReader r;
+	private String line;
 	
 	public Reader(File file) {
 		try {
 			r = new BufferedReader(new FileReader(file));
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException | NullPointerException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static String getCode() {
+	public String getCode() {
 		String result = "";
 		try {
 			while((line = r.readLine()) != null) {
@@ -35,6 +35,14 @@ public class Reader {
 			
 		} finally {
 			return result;
+		}
+	}
+	
+	public void updateCode(File file) {
+		try {
+			r = new BufferedReader(new FileReader(file));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 	
