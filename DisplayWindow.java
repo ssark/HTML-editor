@@ -40,7 +40,8 @@ public class DisplayWindow {
         final JButton load = new JButton("Load");
         load.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                FileTools.loadFile();
+                FileTools.loadFile(frame);
+                HTMLPage.updateFile(FileTools.getFile());
             }
         });
         final JButton newFile = new JButton("New");
