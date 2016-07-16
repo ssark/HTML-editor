@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.DefaultCaret;
 
 public class DisplayWindow {
 	
@@ -81,7 +82,6 @@ public class DisplayWindow {
             		HTMLPage.updateFile(FileTools.getFile());
             		reader.updateCode(FileTools.getFile());
             		editor.updateCode(reader.getCode());
-            		editor.getCode();
             	} catch (IllegalArgumentException ex) {
             		if (FileTools.getFile() != null) {
             			HTMLPage.errorPage();
@@ -95,6 +95,8 @@ public class DisplayWindow {
             	try {
             		FileTools.newFile();
             		HTMLPage.updateFile(FileTools.getFile());
+            		reader.updateCode(FileTools.getFile());
+            		editor.updateCode(reader.getCode());
             	} catch (IllegalArgumentException ex) {
         			HTMLPage.errorPage();
             	}
