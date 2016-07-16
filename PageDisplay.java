@@ -31,14 +31,14 @@ public class PageDisplay extends JEditorPane {
 	 */
 	public void updateFile(File file) {
 		this.file = file;
-		display();
+		displayFromFile();
 	}
 	
 	/**
 	 * Displays HTML page or gives error screen if file cannot be loaded
 	 * Prompts to choose a file if file is null
 	 */
-	public void display() {
+	public void displayFromFile() {
 		if (file == null) {
 			setContentType("text/html");
 			setText("<html><h1>Please select a HTML file to load<h1></html>");
@@ -49,6 +49,16 @@ public class PageDisplay extends JEditorPane {
 		} catch (IOException e) {
 			errorPage();
 		}
+	}
+	
+	/**
+	 * Displays HTML page from code in editor pane
+	 * 
+	 * @param code	code to read to display
+	 */
+	public void displayFromEditor(String code) {
+		setContentType("text/html");
+		setText(code);
 	}
 	
 	public void errorPage() {
