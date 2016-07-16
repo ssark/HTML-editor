@@ -16,6 +16,7 @@ public class Reader {
 	
 	private BufferedReader r;
 	private String line;
+	private File file;
 	
 	public Reader(File file) {
 		try {
@@ -46,7 +47,10 @@ public class Reader {
 		}
 	}
 	
-	public static void setTextArea() {
-		
+	public void updateFile() {
+		String code = Editor.getCode();
+		BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+		bw.write(code);
+		bw.close();
 	}
 }
