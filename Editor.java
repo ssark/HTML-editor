@@ -14,6 +14,7 @@ public class Editor extends JEditorPane {
 	
 	public Editor() {
 		setEditable(false);
+		((PlainDocument) getDocument()).putProperty(PlainDocument.tabSizeAttribute, 2);
 	}
 	
 	/**
