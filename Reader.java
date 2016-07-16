@@ -6,7 +6,7 @@ import java.io.IOException;
 
 /**
  * 
- * @author Sanjana
+ * @author Sanjana, Victoria
  *
  * Methods to read file with HTML code, and set to text area
  *
@@ -42,7 +42,7 @@ public class Reader {
 		try {
 			r = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("Could not load");
 		}
 	}
 	
