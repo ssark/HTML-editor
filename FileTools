@@ -25,7 +25,7 @@ public class FileTools {
 	 * @throws IllegalArgumentException if not .html or .htm or .php
 	 */
 	public static void loadFile(Component comp) {
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("HTML files", "html", "htm", "php");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("HTML & PHP files", "html", "htm", "php");
 	    chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(comp);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
@@ -35,6 +35,7 @@ public class FileTools {
 		if (! filter.accept(chooser.getSelectedFile())) {
 			throw new IllegalArgumentException();
 	    } else {
+	    	System.out.println(chooser.getSelectedFile().getName() + " was loaded");
 	    	isNew = false;
 	    }
 	}
@@ -55,12 +56,17 @@ public class FileTools {
 	
 	/**
 	 * Saves and writes to file
+	 * 
+	 * @param comp		JFrame displaying the panes
+	 * @param newCode	edited code that will overwrite old file
 	 */
-	public static void saveFile(Component comp) {
+	public static void saveFile(Component comp, String newCode) {
 		if (isNew) {
 			chooser.showSaveDialog(comp);
 		} else {
 			// TODO
+			// find file location
+			// write newCode to file
 			// file already has a location --> filewriter
 		}
 	}
