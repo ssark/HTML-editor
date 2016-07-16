@@ -58,6 +58,8 @@ public class DisplayWindow {
 		});
 		
 		JScrollPane scrollPagePane = new JScrollPane(HTMLPage);
+		DefaultCaret caret = (DefaultCaret) HTMLPage.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 		scrollPagePane.setPreferredSize(new Dimension(800, 600));
 		JFrame frame = new JFrame("HTML Editor");
 		
