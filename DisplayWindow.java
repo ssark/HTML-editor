@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 
 public class DisplayWindow {
 	
@@ -37,6 +38,9 @@ public class DisplayWindow {
 		
 		JScrollPane scrollEditPane = new JScrollPane(editor);
 		scrollEditPane.setPreferredSize(new Dimension(600, 600));
+		
+		JSplitPane mainPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollEditPane, scrollPagePane);
+		frame.add(mainPanel, BorderLayout.CENTER);
 		
 		// control panel or toolbar
 		final JPanel control_panel = new JPanel();
@@ -79,9 +83,6 @@ public class DisplayWindow {
         control_panel.add(save);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(scrollEditPane, BorderLayout.WEST);
-		frame.add(scrollPagePane, BorderLayout.EAST);
-		//frame.setPreferredSize(new Dimension(800,600));
 		frame.setLocation(300, 100);
 		frame.pack();
 		frame.setVisible(true);
