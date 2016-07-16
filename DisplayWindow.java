@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class DisplayWindow {
 	
@@ -32,6 +34,29 @@ public class DisplayWindow {
 		Editor editor = new Editor();	// to change with src code
 		Reader reader = new Reader(null);
 		
+		editor.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				updatePage();
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				updatePage();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				updatePage();
+			}
+			
+			private void updatePage() {
+				HTMLPage.displayFromEditor(editor.getCode());
+			}
+			
+		});
+		
 		JScrollPane scrollPagePane = new JScrollPane(HTMLPage);
 		scrollPagePane.setPreferredSize(new Dimension(800, 600));
 		JFrame frame = new JFrame("HTML Editor");
@@ -54,6 +79,7 @@ public class DisplayWindow {
             		HTMLPage.updateFile(FileTools.getFile());
             		reader.updateCode(FileTools.getFile());
             		editor.updateCode(reader.getCode());
+            		editor.getCode();
             	} catch (IllegalArgumentException ex) {
             		if (FileTools.getFile() != null) {
             			HTMLPage.errorPage();
@@ -75,7 +101,7 @@ public class DisplayWindow {
         final JButton save = new JButton("Save");
         save.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                FileTools.saveFile(frame);
+                FileTools.saveFile(frame, editor.getCode());
             }
         });
         control_panel.add(load);
