@@ -21,7 +21,7 @@ public class Reader {
 		try {
 			r = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException | NullPointerException e) {
-			e.printStackTrace();
+			System.out.println("Nothing was loaded");
 		}
 	}
 	
