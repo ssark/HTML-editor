@@ -33,4 +33,11 @@ public class Editor extends JEditorPane {
 	public void display() {
 		setText(code);
 	}
+	
+	/**
+	 * Returns code typed in editor pane
+	 */
+	public String getCode() {
+		return getText();
+	}
 }
